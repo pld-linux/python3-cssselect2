@@ -1,0 +1,12 @@
+--- cssselect2-0.4.1/pyproject.toml~	2022-04-01 23:32:49.000000000 +0200
++++ cssselect2-0.4.1/pyproject.toml	2022-04-01 23:33:28.989868314 +0200
+@@ -40,9 +40,6 @@
+ Issues = 'https://github.com/Kozea/cssselect2/issues'
+ Donation = 'https://opencollective.com/courtbouillon'
+ 
+-[tool.pytest.ini_options]
+-addopts = '--cov'
+-
+ [tool.coverage.run]
+ branch = true
+ include = ['tests/*', 'cssselect2/*']

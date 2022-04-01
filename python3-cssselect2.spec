@@ -14,6 +14,7 @@ Group:		Libraries/Python
 Source0:	https://files.pythonhosted.org/packages/source/c/cssselect2/cssselect2-%{version}.tar.gz
 # Source0-md5:	6dfd5963c8a5d85f2634d1650b1ddfe1
 Patch0:		disable-flake8-isort-pytest.patch
+Patch1:		no-cov.patch
 URL:		https://cssselect2.readthedocs.io/
 BuildRequires:	python3-modules >= 1:3.6
 BuildRequires:	python3-setuptools >= 1:39.2.0
@@ -59,6 +60,7 @@ Dokumentacja API modułu Pythona cssselect2.
 %prep
 %setup -n cssselect2-%{version}
 %patch0 -p1
+%patch1 -p1
 
 # for pythonegg dependencies
 %{__sed} -i -e 's/distutils.core/setuptools/' setup.py
