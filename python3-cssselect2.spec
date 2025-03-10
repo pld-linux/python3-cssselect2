@@ -7,7 +7,7 @@ Summary:	CSS selectors for Python ElementTree
 Summary(pl.UTF-8):	Selektory CSS dla pythonowego ElementTree
 Name:		python3-cssselect2
 Version:	0.4.1
-Release:	5
+Release:	6
 License:	BSD
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/cssselect2/
