@@ -6,18 +6,17 @@
 Summary:	CSS selectors for Python ElementTree
 Summary(pl.UTF-8):	Selektory CSS dla pythonowego ElementTree
 Name:		python3-cssselect2
-Version:	0.4.1
-Release:	7
+Version:	0.8.0
+Release:	1
 License:	BSD
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/cssselect2/
 Source0:	https://files.pythonhosted.org/packages/source/c/cssselect2/cssselect2-%{version}.tar.gz
-# Source0-md5:	6dfd5963c8a5d85f2634d1650b1ddfe1
-Patch0:		disable-flake8-isort-pytest.patch
-Patch1:		no-cov.patch
+# Source0-md5:	45b5f89f2934fbcb52490483367c3997
 URL:		https://cssselect2.readthedocs.io/
+BuildRequires:	python3-build
+BuildRequires:	python3-installer
 BuildRequires:	python3-modules >= 1:3.6
-BuildRequires:	python3-setuptools >= 1:39.2.0
 %if %{with tests}
 BuildRequires:	python3-pytest
 BuildRequires:	python3-pytest-cov
@@ -59,14 +58,9 @@ Dokumentacja API modułu Pythona cssselect2.
 
 %prep
 %setup -q -n cssselect2-%{version}
-%patch -P 0 -p1
-%patch -P 1 -p1
-
-# for pythonegg dependencies
-%{__sed} -i -e 's/distutils.core/setuptools/' setup.py
 
 %build
-%py3_build
+%py3_build_pyproject
 
 %if %{with tests}
 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
@@ -76,13 +70,13 @@ PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
 %if %{with doc}
 cd docs
 PYTHONPATH=$(pwd)/.. \
-%{__python3} -m sphinx -W . build/html
+%{__python3} -m sphinx . build/html
 %endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%py3_install
+%py3_install_pyproject
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -91,7 +85,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc LICENSE README.rst
 %{py3_sitescriptdir}/cssselect2
-%{py3_sitescriptdir}/cssselect2-%{version}-py*.egg-info
+%{py3_sitescriptdir}/cssselect2-%{version}.dist-info
 
 %if %{with doc}
 %files apidocs
